@@ -12,13 +12,11 @@ export default function Home({ posts }) {
         <title>WORKS</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.container}>
         <header className={styles.header}>
           <h1>WORKS</h1>
           <p>Explore our projects and works from the Notion database.</p>
         </header>
-
         <div className={styles.postsGrid}>
           {posts.map((post) => {
             const title =
@@ -30,21 +28,18 @@ export default function Home({ posts }) {
               "en-US",
               { year: "numeric", month: "short", day: "numeric" }
             );
-
             return (
-              <div key={post.id} className={styles.postCard}>
-                <Link href={`/${post.id}`}>
-                  <div>
-                    <img
-                      src={thumbnail}
-                      alt={title}
-                      className={styles.thumbnail}
-                    />
-                    <h3 className={styles.postTitle}>{title}</h3>
-                    <p className={styles.postDate}>{date}</p>
-                  </div>
-                </Link>
-              </div>
+              <Link href={`/${post.id}`} key={post.id} legacyBehavior>
+                <a className={styles.postCard}>
+                  <img
+                    src={thumbnail}
+                    alt={title}
+                    className={styles.thumbnail}
+                  />
+                  <h3 className={styles.postTitle}>{title}</h3>
+                  <p className={styles.postDate}>{date}</p>
+                </a>
+              </Link>
             );
           })}
         </div>
@@ -55,11 +50,10 @@ export default function Home({ posts }) {
 
 export const getStaticProps = async () => {
   const database = await getDatabase(databaseId);
-
   return {
     props: {
       posts: database,
     },
-    revalidate: 1,
+    revalidate: 10,
   };
 };
