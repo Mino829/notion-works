@@ -34,7 +34,7 @@ export default function Home({ posts }) {
             return (
               <div key={post.id} className={styles.postCard}>
                 <Link href={`/${post.id}`}>
-                  <a>
+                  <div>
                     <img
                       src={thumbnail}
                       alt={title}
@@ -42,7 +42,7 @@ export default function Home({ posts }) {
                     />
                     <h3 className={styles.postTitle}>{title}</h3>
                     <p className={styles.postDate}>{date}</p>
-                  </a>
+                  </div>
                 </Link>
               </div>
             );
