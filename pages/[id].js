@@ -6,16 +6,25 @@ import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 
 export const Text = ({ text }) => {
-  if (!text) {
+  if (!Array.isArray(text)) {
     return null;
   }
-  return text.map((value) => {
+  return text.map((value, index) => {
     const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
+      annotations: {
+        bold = false,
+        code = false,
+        color = "default",
+        italic = false,
+        strikethrough = false,
+        underline = false,
+      } = {},
       text,
-    } = value;
+    } = value || {};
+
     return (
       <span
+        key={index}
         className={[
           bold ? styles.bold : "",
           code ? styles.code : "",
@@ -25,7 +34,7 @@ export const Text = ({ text }) => {
         ].join(" ")}
         style={color !== "default" ? { color } : {}}
       >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
+        {text?.link ? <a href={text.link.url}>{text.content}</a> : text?.content || ""}
       </span>
     );
   });
@@ -171,13 +180,13 @@ export default function Post({ page, blocks }) {
   return (
     <div>
       <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
+        <title>{page.properties?.Name?.title?.[0]?.plain_text || "Untitled"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <article className={styles.container}>
         <h1 className={styles.name}>
-          <Text text={page.properties.Name.title} />
+          <Text text={page.properties?.Name?.title || [{ plain_text: "Untitled" }]} />
         </h1>
         <section>
           {blocks.map((block) => (

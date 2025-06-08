@@ -47,9 +47,10 @@ export default function Home({ posts }) {
               </g>
             </svg>
           </div>
-          <h1>Next.js + Notion API ブログ</h1>
+          <h1>WORKS</h1>
           <p>
-           Notionと連携しているブログです。Notionに書き込めばそのままブログとして投稿できます。
+            This is a works pages that lists all posts from a Notion database.
+            <br />
           </p>
         </header>
 
@@ -69,7 +70,7 @@ export default function Home({ posts }) {
                 <h3 className={styles.postTitle}>
                   <Link href={`/${post.id}`}>
                     <a>
-                      <Text text={post.properties.Name.title} />
+                      <Text text={post.properties?.Name?.title || "Untitled"} />
                     </a>
                   </Link>
                 </h3>
