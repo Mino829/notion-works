@@ -1,0 +1,75 @@
+.container {
+  max-width: 960px; /* ページ全体の幅を小さく */
+  margin: 0 auto;
+  padding: 16px; /* 余白を少し小さく */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 32px; /* ヘッダーの余白を縮小 */
+}
+
+.header h1 {
+  font-size: 2rem; /* タイトルのフォントサイズを小さく */
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 1rem; /* 説明文のフォントサイズを小さく */
+  color: #666;
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* カードの最小幅を小さく */
+  gap: 16px; /* カード間のスペースを縮小 */
+}
+
+.postCard {
+  border: 1px solid #ddd;
+  border-radius: 8px; /* 角丸を少し小さく */
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を控えめに */
+}
+
+.postCard:hover {
+  transform: translateY(-3px); /* ホバー時の動きを控えめに */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cardLink {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.thumbnailWrapper {
+  width: 100%;
+  height: 150px; /* 必要に応じて高さを調整 */
+  overflow: hidden;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 枠内に収める */
+}
+
+.cardContent {
+  padding: 12px; /* 内側の余白を縮小 */
+  text-align: center;
+}
+
+.postTitle {
+  font-size: 1rem; /* タイトルのフォントサイズを小さく */
+  margin: 6px 0;
+  font-weight: bold;
+}
+
+.postDate {
+  font-size: 0.8rem; /* 日付のフォントサイズを小さく */
+  color: #666;
+}
