@@ -15,7 +15,7 @@ export default function Home({ posts }) {
       <main className={styles.container}>
         <header className={styles.header}>
           <h1>WORKS</h1>
-          <p>Explore our projects and works from the Notion database.</p>
+          <p>Mino project works and direction</p>
         </header>
         <div className={styles.postsGrid}>
           {posts.map((post) => {
@@ -28,6 +28,7 @@ export default function Home({ posts }) {
               "en-US",
               { year: "numeric", month: "short", day: "numeric" }
             );
+            const tags = post.properties?.Tags?.multi_select || [];
             return (
               <Link href={`/${post.id}`} key={post.id} legacyBehavior>
                 <a className={styles.postCard}>
@@ -38,6 +39,13 @@ export default function Home({ posts }) {
                   />
                   <h3 className={styles.postTitle}>{title}</h3>
                   <p className={styles.postDate}>{date}</p>
+                  <div className={styles.tagContainer}>
+                    {tags.map((tag) => (
+                      <span key={tag.id} className={styles.tag} style={{ backgroundColor: tag.color }}>
+                        {tag.name}
+                      </span>
+                    ))}
+                  </div>
                 </a>
               </Link>
             );
